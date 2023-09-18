@@ -1,152 +1,52 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="UTF-8">
-    <title>Pedido de Namoro</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background: #1a1a1a;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-        
-        h1 {
-            color: #ff0080;
-            margin-top: 100px;
-            font-size: 36px;
-        }
-        
-        .pedido {
-            margin-bottom: 50px;
-        }
-        
-        .botoes {
-            display: flex;
-            justify-content: center;
-            margin-top: 50px;
-        }
-        
-        .botao {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 20px;
-            background-color: #ff0080;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            margin: 0 10px;
-            transition: transform 0.3s;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            position: absolute;
-        }
-        
-        .botao:hover {
-            transform: scale(1.1);
-        }
-        
-        .animacao {
-            display: none;
-            margin-top: 50px;
-            font-size: 24px;
-            color: #ff0080;
-            animation-name: pulsar;
-            animation-duration: 2s;
-            animation-iteration-count: infinite;
-        }
-        
-        @keyframes pulsar {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.2);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-    </style>
-    <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
-    <script>
-        window.addEventListener('load', function() {
-            var simButton = document.getElementById('sim');
-            var naoButton = document.getElementById('nao');
-            var animacaoDiv = document.getElementById('animacao');
-            var isTouchDevice = false;
-            
-            // Verifica se o dispositivo é um dispositivo de toque (celular ou tablet)
-            if ('ontouchstart' in window || navigator.maxTouchPoints) {
-                isTouchDevice = true;
-            }
-            
-            simButton.addEventListener('click', function() {
-                simButton.style.display = 'none';
-                naoButton.style.display = 'none';
-                animacaoDiv.style.display = 'block';
-                animacaoDiv.classList.add('animacao');
-            });
-            
-            if (!isTouchDevice) {
-                var maxX = window.innerWidth - naoButton.offsetWidth;
-                var maxY = window.innerHeight - naoButton.offsetHeight;
-                
-                document.addEventListener('mousemove', function(e) {
-                    var mouseX = e.clientX;
-                    var mouseY = e.clientY;
-                    
-                    var naoButtonRect = naoButton.getBoundingClientRect();
-                    var naoButtonX = naoButtonRect.left + naoButtonRect.width / 2;
-                    var naoButtonY = naoButtonRect.top + naoButtonRect.height / 2;
-                    
-                    var distance = Math.sqrt(Math.pow(mouseX - naoButtonX, 2) + Math.pow(mouseY - naoButtonY, 2));
-                    
-                    if (distance < 100) {
-                        var newX = Math.floor(Math.random() * (maxX - naoButton.offsetWidth));
-                        var newY = Math.floor(Math.random() * (maxY - naoButton.offsetHeight));
-                        
-                        naoButton.style.left = newX + 'px';
-                        naoButton.style.top = newY + 'px';
-                    }
-                });
-            } else {
-                var mc = new Hammer(naoButton);
-                var startX, startY;
-                var buttonRect = naoButton.getBoundingClientRect();
-                
-                mc.on("panstart", function(e) {
-                    startX = buttonRect.left;
-                    startY = buttonRect.top;
-                });
-                
-                mc.on("panmove", function(e) {
-                    var newX = startX + e.deltaX;
-                    var newY = startY + e.deltaY;
-                    
-                    naoButton.style.left = newX + 'px';
-                    naoButton.style.top = newY + 'px';
-                });
-            }
-        });
-    </script>
+	<title>Quer namorar comigo?</title>
+	<style>
+		body {
+			background-color: #ff0000;
+			text-align: center;
+			padding-top: 50px;
+		}
+
+		button {
+			background-color: #ffffff;
+			color: #ff0000;
+			font-size: 24px;
+			font-weight: bold;
+			padding: 20px 40px;
+			border: none;
+			border-radius: 50px;
+			cursor: pointer;
+			margin: 20px;
+		}
+
+		button:hover {
+			background-color: #ff9999;
+			color: #ffffff;
+		}
+	</style>
 </head>
-
 <body>
-    <div class="pedido">
-        <h1>Me da o cú??</h1>
-    </div>
-    <div class="botoes">
-        <button id="sim" class="botao">Sim</button>
-        <button id="nao" class="botao">Não</button>
-    </div>
-    <div id="animacao" class="animacao">
-        Parabéns! Você aceitou o pedido, se prepara que hoje eu chego até mais cedo. 🎉
-    </div>
-</body>
+	<h1 style="color: #ffffff;">Me da o cú?</h1>
+	<button id="sim">Sim</button>
+	<button id="nao">Não</button>
 
+	<script>
+		var nao = document.getElementById("nao");
+		nao.addEventListener("click", function() {
+			var randomX = Math.floor(Math.random() * window.innerWidth);
+			var randomY = Math.floor(Math.random() * window.innerHeight);
+			nao.style.position = "absolute";
+			nao.style.top = randomY + "px";
+			nao.style.left = randomX + "px";
+		});
+
+		var sim = document.getElementById("sim");
+		sim.addEventListener("click", function() {
+			window.location.href = "https://th.bing.com/th/id/R.9c3bb2777d839de200f0a5a47c1e6af3?rik=hemxgDhgr0xqcg&riu=http%3a%2f%2fcdn.memegenerator.es%2fimagenes%2fmemes%2ffull%2f14%2f90%2f14902820.jpg&ehk=bhWVYvII5aLvtvGzZGgZ6Y9y%2bX8LMjAQSH08Om70OmQ%3d&risl=&pid=ImgRaw&r=0";
+		});
+	</script>
+  
+</body>
 </html>
